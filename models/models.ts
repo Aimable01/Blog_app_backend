@@ -1,16 +1,9 @@
-//  roles
-enum Roles {
-  ADMIN = "admin",
-  USER = "user",
-}
-
 //  user model
 interface User {
   id: number;
   name: string;
   email: string;
   password: string;
-  role: Roles;
 }
 
 //   post model
