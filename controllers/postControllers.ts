@@ -42,7 +42,7 @@ export const viewPosts = async (req: Request, res: Response): Promise<void> => {
   try {
     const posts = await pool.query(
       `SELECT 
-          users.name, posts.title, posts.content, posts.created_at, comments.comment_content
+          users.name, posts.title, posts.content, posts.created_at,posts.likes, comments.comment_content
        FROM 
           users 
        INNER JOIN 
