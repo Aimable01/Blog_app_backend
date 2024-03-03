@@ -19,7 +19,7 @@ interface Post {
 //  comment model
 interface Comment {
   id: number;
-  content: string;
+  comment_content: string;
   post_id: number;
   author_id: number;
 }
