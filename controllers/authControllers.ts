@@ -13,9 +13,8 @@ pool
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(50) NOT NULL,
                 email VARCHAR(50) UNIQUE NOT NULL,
-                password VARCHAR(200) NOT NULL,
-                role VARCHAR(10) DEFAULT 'user' NOT NULL
-            )
+                password VARCHAR(200) NOT NULL
+              )
         `);
   })
   .catch((err) =>
@@ -24,13 +23,13 @@ pool
 
 // user registration
 export const register = async (req: Request, res: Response): Promise<void> => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await pool.query(
-      `INSERT INTO users (name, email, password, role) VALUES ($1,$2,$3, $4)`,
-      [name, email, hashedPassword, role]
+      `INSERT INTO users (name, email, password) VALUES ($1,$2,$3)`,
+      [name, email, hashedPassword]
     );
 
     res.status(200).json({ message: "Registration successful" });
