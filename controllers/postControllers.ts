@@ -41,7 +41,15 @@ export const createPost = async (
 export const viewPosts = async (req: Request, res: Response): Promise<void> => {
   try {
     const posts = await pool.query(
-      `SELECT users.name, posts.title, posts.content, posts.created_at FROM users INNER JOIN posts ON posts.author_id = users.id`
+      `SELECT 
+          users.name, posts.title, posts.content, posts.created_at, comments.comment_content
+       FROM 
+          users 
+       INNER JOIN 
+           posts ON posts.author_id = users.id
+       LEFT JOIN 
+           comments ON posts.id = comments.post_id     
+       `
     );
     res.status(200).json({ message: posts.rows });
   } catch (error) {
