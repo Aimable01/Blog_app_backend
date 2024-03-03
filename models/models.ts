@@ -11,9 +11,9 @@ interface Post {
   id: number;
   title: string;
   content: string;
-  author_id: number;
   likes: number;
   created_at: Date;
+  author_id: number;
 }
 
 //  comment model
